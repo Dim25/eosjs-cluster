@@ -1,6 +1,6 @@
 {
   "name": "eosjs-cluster",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "eosjs cluster client",
   "main": "index.js",
   "scripts": {

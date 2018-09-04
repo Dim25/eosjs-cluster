@@ -22,16 +22,28 @@ function EosCluster() {
 				const fn = EosObject[fn_key];
 				EosObject[fn_key] = function() {
 					const args = arguments;
+					const _EndpointIndex = EndpointIndex;
 					return fn(...args).catch((err) => {
 						if (err) {
 							if (err.code === 'ENOTFOUND' || err.code === 'ECONNREFUSED') {
-								NextEndpoint();
+								console.log('hi');
+
+								if(endpoints.length > 1 && (_EndpointIndex + 1) % endpoints.length !== EndpointIndex) {
+									console.log('Yo..!');
+									NextEndpoint();
+								}
 								const newEosObject = CreateEosObject();
-								EosObject[fn_key] = newEosObject[fn_key];
+								for (var key2 in EosObject) {
+									if (typeof EosObject[key2] === 'function' && key2 !== 'fc' && key2 !== 'modules' && key2 !== 'config') {
+										EosObject[key2] = newEosObject[key2];
+									}
+								}
+
 								return newEosObject[fn_key](...args);
 							}
 						}
 
+						console.log(err);
 						throw Error(err);
 					});
 				}
