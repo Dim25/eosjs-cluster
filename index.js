@@ -26,10 +26,7 @@ function EosCluster() {
 					return fn(...args).catch((err) => {
 						if (err) {
 							if (err.code === 'ENOTFOUND' || err.code === 'ECONNREFUSED') {
-								console.log('hi');
-
 								if(endpoints.length > 1 && (_EndpointIndex + 1) % endpoints.length !== EndpointIndex) {
-									console.log('Yo..!');
 									NextEndpoint();
 								}
 								const newEosObject = CreateEosObject();
@@ -43,7 +40,6 @@ function EosCluster() {
 							}
 						}
 
-						console.log(err);
 						throw Error(err);
 					});
 				}
