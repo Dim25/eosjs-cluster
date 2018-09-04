@@ -27,13 +27,12 @@ function EosCluster() {
 							if (err.code === 'ENOTFOUND' || err.code === 'ECONNREFUSED') {
 								NextEndpoint();
 								const newEosObject = CreateEosObject();
+								EosObject[fn_key] = newEosObject[fn_key];
 								return newEosObject[fn_key](...args);
-							} else {
-								throw Error(err);
 							}
-						} else {
-							throw Error(err);
 						}
+
+						throw Error(err);
 					});
 				}
 			}
