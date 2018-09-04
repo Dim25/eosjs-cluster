@@ -1,0 +1,29 @@
+{
+  "name": "eosjs-cluster",
+  "version": "1.0.0",
+  "description": "eosjs cluster client",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DEXEOS/eosjs-cluster.git"
+  },
+  "keywords": [
+    "eosjs-cluster",
+    "eos",
+    "eosio",
+    "eosjs"
+  ],
+  "author": "Lecko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DEXEOS/eosjs-cluster/issues"
+  },
+  "homepage": "https://github.com/DEXEOS/eosjs-cluster#readme",
+  "dependencies": {
+    "binaryen": "^37.0.0",
+    "eosjs": "^16.0.6"
+  }
+}

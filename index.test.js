@@ -1,11 +1,3 @@
-# eosjs-cluster
-eosjs cluster client
-
-### Install
-`npm install --save eosjs@latest binaryen@37.0.0 eosjs-cluster`
-
-### Example
-```
 const httpEndpoints = [
 	'https://some-wrong-end-point-1.com', // Wrong Endpoint for test
 	'https://some-wrong-end-point-2.com', // Wrong Endpoint for test
@@ -35,4 +27,3 @@ eos.getCurrencyBalance('eosio.token', 'leckoaccount', 'EOS')
 .catch((err) => {
 	console.log(err);
 });
-```
