@@ -4,6 +4,15 @@ eosjs cluster client
 ### Install
 `npm install --save eosjs@latest binaryen@37.0.0 eosjs-cluster`
 
+### Migrate from eosjs to eosjs-cluster
+You can use a instance of EosCluster same way with eosjs object.
+
+```
+const eos = Eos({httpEndpoint, chainId, keyProvider, binaryen});
+const eos = EosCluster([httpEndpoint], {chainId, keyProvider, binaryen});
+// both are same.
+```
+
 ### Example
 ```
 const httpEndpoints = [
@@ -18,7 +27,7 @@ const keyProvider = ['PrivateKey1', 'PrivateKey2'];
 const account = 'accountname1';
 const binaryen = require('binaryen');
 
-const EosCluster = require('./index');
+const EosCluster = require('eosjs-cluster');
 
 // Do not use httpEndpoint in second parameter.
 // EosCluster(httpEndpoints, {httpEndpoint: 'This is wrong usage!!', chainId, keyProvider, binaryen});
@@ -36,3 +45,7 @@ eos.getCurrencyBalance('eosio.token', 'leckoaccount', 'EOS')
 	console.log(err);
 });
 ```
+
+### Related project
+
+[DEXEOS, EOS based Decentralized Exchange](https://dexeos.io)
