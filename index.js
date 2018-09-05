@@ -1,3 +1,5 @@
+'use strict';
+
 const Eos = require('eosjs');
 
 function EosCluster() {
@@ -23,11 +25,12 @@ function EosCluster() {
 				EosObject[fn_key] = function() {
 					const args = arguments;
 					const _EndpointIndex = EndpointIndex;
-					return fn(...args).catch((err) => {
+					return fn.apply(null, args).catch((err) => {
+						// console.log('ERRRRR', err.code, err.name);
 						if (err) {
-							if (err.code === 'ENOTFOUND' || err.code === 'ECONNREFUSED') {
-								if(endpoints.length > 1 && (_EndpointIndex + 1) % endpoints.length !== EndpointIndex) {
-									NextEndpoint();
+							if (err.status == 429 || (err.name === 'TypeError' && err.message === 'Failed to fetch') || err.code === 'ENOTFOUND' || err.code === 'ECONNREFUSED' || err.code === 'ECONNREFUSED') {
+								if(endpoints.length > 1 && _EndpointIndex === EndpointIndex) {
+									NextEndpoint(_EndpointIndex);
 								}
 								const newEosObject = CreateEosObject();
 								for (var key2 in EosObject) {
@@ -36,7 +39,7 @@ function EosCluster() {
 									}
 								}
 
-								return newEosObject[fn_key](...args);
+								return newEosObject[fn_key].apply(null, args);
 							}
 						}
 
@@ -55,3 +58,6 @@ function EosCluster() {
 }
 
 module.exports = EosCluster;
+if(typeof window !== 'undefined') {
+	window.EosCluster = EosCluster;
+}

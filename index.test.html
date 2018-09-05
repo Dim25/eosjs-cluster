@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TEST</title>
+<script type="text/javascript" src="./dist/eosjs-cluster.js"></script>
+</head>
+<body>
+
+<h1>This is a Heading</h1>
+<p>This is a paragraph.</p>
+
+<script type="text/javascript">
+	// const httpEndpoints = [
+	// 	'https://some-wrong-end-point-1.com', // Wrong Endpoint for test
+	// 	'https://some-wrong-end-point-2.com', // Wrong Endpoint for test
+	// 	'https://eos.greymass.com',
+	// 	'https://api.main-net.eosnodeone.io',
+	// 	'https://api.eosnewyork.io'
+	// ];
+	// const chainId = 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906';
+	// const keyProvider = ['PrivateKey1', 'PrivateKey2'];
+	// const account = 'accountname1';
+
+	// const eos = EosCluster(httpEndpoints, {chainId, keyProvider});
+
+	// eos.getCurrencyBalance('eosio.token', 'leckoaccount', 'EOS')
+	// .then((res) => {
+	// 	console.log('yo1', res);
+	// })
+	// .catch((err) => {
+	// 	console.log('yo', err);
+	// });
+
+	const httpEndpoints = [
+		'https://some-wrong-end-point-1.com', // Wrong Endpoint for test
+		'https://some-wrong-end-point-2.com', // Wrong Endpoint for test
+		'https://eos.greymass.com',
+		'https://api.main-net.eosnodeone.io',
+		'https://api.eosnewyork.io'
+	];
+	const eosCluster = EosCluster(httpEndpoints, {chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906'})
+
+	var i = 0;
+	var j = 0;
+	function a() {
+		j++;
+
+		eosCluster.getInfo({})
+			.then(result => {
+				i++;
+				console.log('good', i);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+			
+		if(j == 20) {
+			return;
+		}
+		setTimeout(() => {
+			a();
+		}, 100);
+	}
+	a();
+</script>
+
+</body>
+</html>
