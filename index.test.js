@@ -36,7 +36,8 @@ const httpEndpoints = [
 	'https://api.main-net.eosnodeone.io',
 	'https://api.eosnewyork.io'
 ];
-const eosCluster = EosCluster(httpEndpoints, {chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906'})
+const eosCluster = EosCluster(httpEndpoints, {chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906'});
+const eosCluster2 = EosCluster(httpEndpoints, {chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906'});
 
 var i = 0;
 var j = 0;
@@ -60,3 +61,26 @@ function a() {
 	}, 100);
 }
 a();
+
+var i2 = 0;
+var j2 = 0;
+function a2() {
+	j2++;
+
+	eosCluster2.getInfo({})
+		.then(result => {
+			i2++;
+			console.log('good', i2);
+		})
+		.catch(err => {
+			console.log(err);
+		});
+		
+	if(j2 == 20) {
+		return;
+	}
+	setTimeout(() => {
+		a2();
+	}, 100);
+}
+a2();

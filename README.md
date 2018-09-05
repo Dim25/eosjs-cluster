@@ -2,14 +2,14 @@
 eosjs cluster client
 
 ### Install
-`npm install --save eosjs@latest binaryen@37.0.0 eosjs-cluster`
+`npm install --save eosjs@latest eosjs-cluster`
 
 ### Migrate from eosjs to eosjs-cluster
 You can use a instance of EosCluster same way with eosjs object.
 
 ```
-const eos = Eos({httpEndpoint, chainId, keyProvider, binaryen});
-const eos = EosCluster([httpEndpoint], {chainId, keyProvider, binaryen});
+const eos = Eos({httpEndpoint, chainId, keyProvider});
+const eos = EosCluster([httpEndpoint], {chainId, keyProvider});
 // both are same.
 ```
 
@@ -25,17 +25,16 @@ const httpEndpoints = [
 const chainId = 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906';
 const keyProvider = ['PrivateKey1', 'PrivateKey2'];
 const account = 'accountname1';
-const binaryen = require('binaryen');
 
 const EosCluster = require('eosjs-cluster');
 
 // Do not use httpEndpoint in second parameter.
-// EosCluster(httpEndpoints, {httpEndpoint: 'This is wrong usage!!', chainId, keyProvider, binaryen});
+// EosCluster(httpEndpoints, {httpEndpoint: 'This is wrong usage!!', chainId, keyProvider});
 
-// EosCluster([] or null or undefined, {chainId, keyProvider, binaryen});
-// == Eos({chainId, keyProvider, binaryen});
+// EosCluster([] or null or undefined, {chainId, keyProvider});
+// == Eos({chainId, keyProvider});
 
-const eos = EosCluster(httpEndpoints, {chainId, keyProvider, binaryen});
+const eos = EosCluster(httpEndpoints, {chainId, keyProvider});
 
 eos.getCurrencyBalance('eosio.token', 'leckoaccount', 'EOS')
 .then((res) => {
