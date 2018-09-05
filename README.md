@@ -48,3 +48,4 @@ eos.getCurrencyBalance('eosio.token', 'leckoaccount', 'EOS')
 ### Related project
 
 [DEXEOS, EOS based Decentralized Exchange](https://dexeos.io)
+[Bloks.io - EOS Block Explorer](https://bloks.io/)
