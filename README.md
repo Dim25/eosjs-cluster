@@ -1,5 +1,10 @@
 # eosjs-cluster
-eosjs cluster client
+**eosjs-cluster** can be used same way as using eosjs library.
+When there happens a problem with an endpoint, eosjs-cluster automatically calls the same request to the next endpoint.
+
+it catches ENOTFOUND and ECONNREFUSED, "Too many request" for it.
+
+It also supports browsers 🙂
 
 ### Install
 `npm install --save eosjs@latest eosjs-cluster`
@@ -45,7 +50,7 @@ eos.getCurrencyBalance('eosio.token', 'leckoaccount', 'EOS')
 });
 ```
 
-### Related project
+### Related projects(Projects using eosjs-cluster)
 
 [DEXEOS, EOS based Decentralized Exchange](https://dexeos.io)
 
