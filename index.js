@@ -73,8 +73,19 @@ function EosClusterV2() {
 	return EosCluster(endpoints, config);
 }
 
-module.exports = { EosCluster, EosClusterV2 };
+function EosClusterScatter() {
+	const endpoints = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+	return function() {
+		const config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+		config.httpEndpoint = endpoints;
+		return EosClusterV2(config);
+	}
+}
+
+module.exports = { EosCluster, EosClusterV2, EosClusterScatter };
 if(typeof window !== 'undefined') {
 	window.EosCluster = EosCluster;
 	window.EosClusterV2 = EosClusterV2;
+	window.EosClusterScatter = EosClusterScatter;
 }

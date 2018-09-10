@@ -13,13 +13,27 @@ It also supports browsers 🙂
 You can use a instance of EosCluster same way with eosjs object.
 
 ```
+// they are same.
 const eos = Eos({httpEndpoint, chainId, keyProvider});
-
 const { EosCluster, EosClusterV2 } = require('eosjs-cluster');
 const eos = EosCluster([httpEndpoint], {chainId, keyProvider});
 const eos = EosClusterV2({httpEndpoint, chainId, keyProvider});
 const eos = EosClusterV2({[httpEndpoint], chainId, keyProvider});
-// both are same.
+
+// For Scatter
+const httpEndpoints = [
+	'https://eos.greymass.com', // First endpoint shoule be same with eosChainInfo.host
+	'https://api.main-net.eosnodeone.io',
+	'https://api.eosnewyork.io'
+];
+const eosChainInfo = {
+	blockchain: 'eos',
+	host: 'eos.greymass.com', // This host value shoule be same with httpEndpoints[0]
+	port: 443,
+	chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906'
+};
+const { EosClusterScatter } = require('eosjs-cluster');
+scatterObj.eos(eosChainInfo, EosClusterScatter(httpEndpoints), { chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906', binaryen: Binaryen }, 'https');
 ```
 
 ### Example
