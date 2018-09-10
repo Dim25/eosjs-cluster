@@ -29,7 +29,7 @@ function EosCluster() {
 					return fn.apply(null, args).catch((err) => {
 						// console.log('ERRRRR', err.code, err.name);
 						if (err) {
-							if (err.status == 429 || (err.name === 'TypeError' && err.message === 'Failed to fetch') || err.code === 'ENOTFOUND' || err.code === 'ECONNREFUSED' || err.code === 'ECONNREFUSED') {
+							if (err.status == 404 || err.status == 429 || (err.name === 'TypeError' && err.message === 'Failed to fetch') || err.code === 'ENOTFOUND' || err.code === 'ECONNREFUSED' || err.code === 'ECONNREFUSED') {
 								if(endpoints.length > 1 && _EndpointIndex === EndpointIndex) {
 									NextEndpoint(_EndpointIndex);
 								}
