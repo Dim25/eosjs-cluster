@@ -58,9 +58,26 @@ function EosCluster() {
 	return CreateEosObject();
 }
 
-module.exports = EosCluster;
+function EosClusterV2() {
+	var endpoints = [];
+	const config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+	if (!config.httpEndpoint) {
+	} else if(typeof config.httpEndpoint === 'string') {
+		endpoints.push(config.httpEndpoint);
+		delete config.httpEndpoint;
+	} else {
+		endpoints = config.httpEndpoint;
+		delete config.httpEndpoint;
+	}
+
+	return EosCluster(endpoints, config);
+}
+
+module.exports = { EosCluster, EosClusterV2 };
 if(typeof window !== 'undefined') {
 	window.EosCluster = EosCluster;
+	window.EosClusterV2 = EosClusterV2;
 }
 },{"eosjs":146}],2:[function(require,module,exports){
 (function (global){

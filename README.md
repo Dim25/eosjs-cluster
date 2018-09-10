@@ -14,7 +14,11 @@ You can use a instance of EosCluster same way with eosjs object.
 
 ```
 const eos = Eos({httpEndpoint, chainId, keyProvider});
+
+const { EosCluster, EosClusterV2 } = require('eosjs-cluster');
 const eos = EosCluster([httpEndpoint], {chainId, keyProvider});
+const eos = EosClusterV2({httpEndpoint, chainId, keyProvider});
+const eos = EosClusterV2({[httpEndpoint], chainId, keyProvider});
 // both are same.
 ```
 
@@ -31,7 +35,7 @@ const chainId = 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e90
 const keyProvider = ['PrivateKey1', 'PrivateKey2'];
 const account = 'accountname1';
 
-const EosCluster = require('eosjs-cluster');
+const { EosCluster } = require('eosjs-cluster');
 
 // Do not use httpEndpoint in second parameter.
 // EosCluster(httpEndpoints, {httpEndpoint: 'This is wrong usage!!', chainId, keyProvider});
