@@ -21,6 +21,9 @@ const eos = EosClusterV2({httpEndpoint, chainId, keyProvider});
 const eos = EosClusterV2({[httpEndpoint], chainId, keyProvider});
 
 // For Scatter
+/////////////////////////////////
+// This is not supported yet!! //
+/////////////////////////////////
 const httpEndpoints = [
 	'https://eos.greymass.com', // First endpoint shoule be same with eosChainInfo.host
 	'https://api.main-net.eosnodeone.io',
